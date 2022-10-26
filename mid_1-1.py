@@ -6,3 +6,9 @@ def is_prime(n):
         print('%d is not a prime number nor a synthetic number' %n)
     else:
         print('%d is not a synthetic number' %n)
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n*factorial(n-1)
