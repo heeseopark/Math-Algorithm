@@ -1,3 +1,6 @@
+from fractions import *
+
+
 def is_prime(n,print_solution):
     if print_solution == 1:
         if n<=0:
@@ -55,3 +58,10 @@ def gcd(a,b):
     list_a = factorization(a)
     list_b = factorization(b)
     
+def first_order_equation(a, b):
+    if a ==0:
+        raise ValueError
+    else:
+        return Fraction(-b,a)
+
+# 식 정리 하는 알고리즘 만들 필요 있음 (딥러닝 이용)
