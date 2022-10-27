@@ -50,3 +50,8 @@ def factorization(n):
             n //= d
             result.append(d)
     return result
+
+def gcd(a,b):
+    list_a = factorization(a)
+    list_b = factorization(b)
+    
