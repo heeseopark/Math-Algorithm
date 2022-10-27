@@ -37,3 +37,16 @@ def prime_list(n, print_solution):
 
         # 소수 목록 산출
         return [i for i in range(2, n) if sieve[i] == True]
+
+def factorization(n):
+    if n<=1:
+        return n
+    result = []
+    d=2
+    while n != 1:
+        if n % d != 0:
+            d += 1
+        else:
+            n //= d
+            result.append(d)
+    return result
