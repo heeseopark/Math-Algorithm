@@ -65,3 +65,16 @@ def first_order_equation(a, b):
         return Fraction(-b,a)
 
 # 식 정리 하는 알고리즘 만들 필요 있음 (딥러닝 이용)
+
+def find_degree(expression):
+
+def find_coefficient(expression, order):
+
+def find_num_of_terms(expression):
+
+def find_variable(expression):
+
+def sort_like_terms(expression):
+
+def cal_parentheses(expression):
+    
