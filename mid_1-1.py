@@ -68,8 +68,6 @@ def first_order_equation(a, b):
 
 def find_degree(expression):
 
-def find_coefficient(expression, order):
-
 def find_num_of_terms(expression):
 
 def find_variable(expression):
@@ -77,4 +75,27 @@ def find_variable(expression):
 def sort_like_terms(expression):
 
 def cal_parentheses(expression):
+
+def sort_expression(expression, variable):
+    expression_list = []
+    return expression_list
+
+def find_coefficient(expression, order, variable):
+    return sort_expression(expression)[order]
+
+def factorization_dictionary(n):
+    factorization_result = dict()
+    if n<=1:
+        factorization_result[n]=1
+        return factorization_result
     
+    d=2
+    while n != 1:
+        if n % d != 0:
+            d += 1
+        else:
+            n //= d
+            factorization_result
+            
+    return 
+
