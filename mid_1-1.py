@@ -68,7 +68,21 @@ def first_order_equation(a, b):
 
 def find_degree(expression):
 
-def find_num_of_terms(expression):
+def number_of_terms(expression):
+	count = 0
+	for i in expression:
+		if i == '+':
+			count += 1
+	return count+1
+	
+def organize_expression(expression):
+	n = 0
+	terms = list()
+	for i in expression:
+		if i == '+':
+			n += 1
+		terms[n].append(i)
+	return terms
 
 def find_variable(expression):
 
@@ -99,3 +113,7 @@ def factorization_dictionary(n):
             
     return 
 
+def paranthesis_check(expression):
+	#use stack
+	paranthesis_error = bool()
+	return paranthesis_error
