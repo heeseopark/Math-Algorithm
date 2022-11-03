@@ -67,6 +67,7 @@ def first_order_equation(a, b):
 # 식 정리 하는 알고리즘 만들 필요 있음 (딥러닝 이용)
 
 def find_degree(expression):
+    pass
 
 def number_of_terms(expression):
 	count = 0
@@ -85,11 +86,11 @@ def organize_expression(expression):
 	return terms
 
 def find_variable(expression):
-
+    pass
 def sort_like_terms(expression):
-
+    pass
 def cal_parentheses(expression):
-
+    pass
 def sort_expression(expression, variable):
     expression_list = []
     return expression_list
@@ -117,3 +118,36 @@ def paranthesis_check(expression):
 	#use stack
 	paranthesis_error = bool()
 	return paranthesis_error
+
+def is_odd_or_even(n):
+    if n<=0:
+        return print('%d is not a natural number' %n)
+    elif n//2 == 1:
+        return print('%d is an odd number' %n)
+    elif n//2 == 0:
+        return print('%d is an even number' %n)
+
+def is_integer(n):
+    return isinstance(n, int)
+
+def is_natural(n):
+    return isinstance(n, int) and n>0
+
+def is_positive_or_negative(n):
+    if n>0:
+
+    elif n<0:
+
+    elif n==0:
+
+def print_commutative_property(expression):
+    count = 0
+    for i in expression:
+        if i == '+' or i == '-':
+            count += 1
+        if expression[0] == '-':
+            count -= 1
+    if count != 2:
+        return print("expression cannot use commutative property")
+
+    # + 있는 인덱스 받아서 자리 바꾸기
