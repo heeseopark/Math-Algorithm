@@ -151,3 +151,39 @@ def print_commutative_property(expression):
         return print("expression cannot use commutative property")
 
     # + 있는 인덱스 받아서 자리 바꾸기
+
+
+def check_paranthesis(expression): #오류 있어서 바꿔야 됨
+    paranthesis_list = []
+    for i in expression:
+        if i == '(' or i == '{' or i == '[':
+            paranthesis_list.append(i)
+        if i == ')' and paranthesis_list[-1] == ')':
+            paranthesis_list.pop()
+        if i == '}' and paranthesis_list[-1] == '}':
+            paranthesis_list.pop()
+        if i == ']' and paranthesis_list[-1] == ']':
+            paranthesis_list.pop()
+    if paranthesis_list == []:
+        return True
+    else:
+        return print('paranthesis order does not match')
+
+class power_int(): #수정 필요
+    def __init__(self, base, exp):
+        self.base = base
+        self.exp = exp
+
+    def value(a,b):
+        if a == 0 and b == 0:
+            raise ValueError
+        elif a == 0 and b != 0:
+            return 0
+        elif a != 0 and b == 0:
+            return 1
+        else:
+            power_value = 1
+            for i in range(b):
+                power_value *= a
+            return power_value
+
