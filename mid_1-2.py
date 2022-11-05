@@ -1,4 +1,10 @@
+class point():
+    pass
+
+
 class triangle():
-    class point():
-    class side():
-    class angle():
+    def __init__(self, name):
+        self.name = name
+
+    def get
+

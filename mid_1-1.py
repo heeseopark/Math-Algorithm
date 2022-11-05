@@ -1,8 +1,8 @@
 from fractions import *
 
 
-def is_prime(n,print_solution):
-    if print_solution == 1:
+def is_prime(n,print_solution): #소수 체크 알고리즘
+    if print_solution == 1: # 풀이까지 출력
         if n<=0:
             return print('%d is not a natural number.' %n)
 
@@ -18,7 +18,7 @@ def is_prime(n,print_solution):
         else:
             return print('%d is a prime nubmer' %n)
 
-    if print_solution == 0:
+    if print_solution == 0: #풀이 없이 True, False만 필요한 경우
         if i<2:
             raise ValueError
         for i in range(2, n):
@@ -26,7 +26,7 @@ def is_prime(n,print_solution):
                 return False
         return True
 
-def prime_list(n, print_solution):
+def prime_list(n, print_solution): #최댓값을 주고 소수 출력
     if print_solution == 0:
         # 에라토스테네스의 체 초기화: n개 요소에 True 설정(소수로 간주)
         sieve = [True] * n
@@ -41,7 +41,7 @@ def prime_list(n, print_solution):
         # 소수 목록 산출
         return [i for i in range(2, n) if sieve[i] == True]
 
-def factorization(n):
+def factorization(n): #소인수분해 결과 출력
     if n<=1:
         return n
     result = []
@@ -158,16 +158,17 @@ def check_paranthesis(expression): #오류 있어서 바꿔야 됨
     for i in expression:
         if i == '(' or i == '{' or i == '[':
             paranthesis_list.append(i)
-        if i == ')' and paranthesis_list[-1] == ')':
+        if i == ')' and paranthesis_list[-1] == '(':
             paranthesis_list.pop()
-        if i == '}' and paranthesis_list[-1] == '}':
+        if i == '}' and paranthesis_list[-1] == '{':
             paranthesis_list.pop()
-        if i == ']' and paranthesis_list[-1] == ']':
+        if i == ']' and paranthesis_list[-1] == '[':
             paranthesis_list.pop()
     if paranthesis_list == []:
         return True
     else:
-        return print('paranthesis order does not match')
+        print('paranthesis order does not match')
+        return False
 
 class power_int(): #수정 필요
     def __init__(self, base, exp):
