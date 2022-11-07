@@ -188,3 +188,13 @@ class power_int(): #수정 필요
                 power_value *= a
             return power_value
 
+def get_value_of_expression(expression):
+    global variable_list = []
+    for i in expression:
+        if i.isnumeric() == False and i not in ['+', '-', '*', '/']:
+            variable_list.append(i)
+
+
+
+
+#띄어쓰기 있는 경우 지우기
