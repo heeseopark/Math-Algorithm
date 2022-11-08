@@ -195,6 +195,21 @@ def get_value_of_expression(expression):
             variable_list.append(i)
 
 
+class expression():
+
+    def __init__(self, global express):
+        self.expression = express
+    order_dict = dict()
+    coefficient_dect = dict()
+    variable_list = []
+
+    def get_variables():
+        for i in 
+    
+        return variable_list
+    
+    def value():
+
 
 
 #띄어쓰기 있는 경우 지우기
