@@ -213,3 +213,25 @@ class expression():
 
 
 #띄어쓰기 있는 경우 지우기
+
+class VerticalBar():
+	def __init__(self, variable):
+		self.variable() = variable
+		
+	class point():
+		def value():
+			pass
+	
+	class range():
+		def __init__(self, start, finish):
+			self.start = start
+			self.finish = finish
+		def length(start, finish):
+			return abs(finish, start)
+	
+# same term organize + braket organize
+def SameTermOrganize(expression):
+	if expression.NumOfVariable == 1:
+		TotalCoefficient = sum(expression.coeffc
+		icient)
+	return str(TotalCoefficient + expression.variable)
