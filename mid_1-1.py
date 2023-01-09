@@ -66,37 +66,6 @@ def first_order_equation(a, b):
 
 # 식 정리 하는 알고리즘 만들 필요 있음 (딥러닝 이용)
 
-def find_degree(expression):
-    pass
-
-def number_of_terms(expression):
-	count = 0
-	for i in expression:
-		if i == '+':
-			count += 1
-	return count+1
-	
-def organize_expression(expression):
-	n = 0
-	terms = list()
-	for i in expression:
-		if i == '+':
-			n += 1
-		terms[n].append(i)
-	return terms
-
-def find_variable(expression):
-    pass
-def sort_like_terms(expression):
-    pass
-def cal_parentheses(expression):
-    pass
-def sort_expression(expression, variable):
-    expression_list = []
-    return expression_list
-
-def find_coefficient(expression, order, variable):
-    return sort_expression(expression)[order]
 
 def factorization_dictionary(n):
     factorization_result = dict()
