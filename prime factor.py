@@ -48,3 +48,43 @@ def factorization(n):
             factorization.append((i, count))
     return factorization
 
+def get_gcd(a, b):
+    # Get the factorizations of a and b
+    a_factors = factorization(a)
+    b_factors = factorization(b)
+    # Initialize a list to store the GCD factors
+    gcd_factors = []
+    # Find the minimum length of the factorizations
+    min_length = min(len(a_factors), len(b_factors))
+    # Iterate over the indices of the factorizations
+    for i in range(2, min_length):
+        # If the orders of the i-th factors are equal, append the i-th prime and order to the GCD factors list
+        if a_factors[i] == b_factors[i]:
+            gcd_factors.append([i, a_factors[i]])
+        # If the orders of the i-th factors are different, append the i-th prime and the minimum order to the GCD factors list
+        else:
+            gcd_factors.append([i, min(a_factors[i], b_factors[i])])
+    # Return the GCD factors list
+    return gcd_factors
+
+def get_lcm(a, b):
+    # Get the factorizations of a and b
+    a_factors = factorization(a)
+    b_factors = factorization(b)
+    # Initialize a list to store the LCM factors
+    lcm_factors = []
+    # Find the maximum length of the factorizations
+    max_length = max(len(a_factors), len(b_factors))
+    # Iterate over the indices of the factorizations
+    for i in range(2, max_length):
+        # If the i-th index is not present in one of the factorizations, use the order from the other factorization
+        if i >= len(a_factors):
+            lcm_factors.append([i, b_factors[i]])
+        elif i >= len(b_factors):
+            lcm_factors.append([i, a_factors[i]])
+        # If the orders of the i-th factors are different, append the i-th prime and the maximum order to the LCM factors list
+        else:
+            lcm_factors.append([i, max(a_factors[i], b_factors[i])])
+    # Return the LCM factors list
+    return lcm_factors
+

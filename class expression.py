@@ -195,30 +195,104 @@ class Inequality(Expression):
 # Variables: {'x'}
 # Terms: [(5.0, 'x', 1), (7.0, None, 0)]
 
-def solve_first_order_equation(equation):
+def solve_first_order_equation(equation_string):
+    # Create an Equation object
+    equation = Equation(equation_string)
+
     # Check if the equation is first-order
-    if len(equation.variables) != 1 or max([term[2] for term in equation.terms]) != 1:
+    if max([term[2] for term in equation.terms]) != 1:
         raise ValueError('The equation is not first-order.')
 
-    # Check if the equation is in the form "ax + b = 0"
-    if equation.terms[0][1] is not None:
-        a = equation.terms[0][0]
-        b = equation.terms[1][0]
-    else:
-        a = equation.terms[1][0]
-        b = equation.terms[0][0]
-
     # Check if the equation has a solution
-    if a == 0:
-        if b == 0:
-            raise ValueError('The equation has infinite solutions.')
-        else:
-            raise ValueError('The equation has no solutions.')
+    if equation.left_side() == equation.right_side():
+        raise ValueError('The equation has infinite solutions.')
+    elif equation.left_side() == 0:
+        raise ValueError('The equation has no solutions.')
 
     # Return the solution
-    return f'{equation.variables.pop()} = {-b/a:.2f}'
+    return f'{equation.variables.pop()} = {equation.right_side()/equation.left_side():.2f}'
 
-# Test the function
-equation = Equation('5x + 7 = 2')
-print(solve_first_order_equation(equation))  # Output: x = -1.60
+def solve_first_order_inequality(inequality_string):
+    # Create an Inequality object
+    inequality = Inequality(inequality_string)
+
+    # Check if the inequality is first-order
+    if max([term[2] for term in inequality.terms]) != 1:
+        raise ValueError('The inequality is not first-order.')
+
+    # Check if the inequality has a solution
+    if inequality.left_side() == inequality.right_side():
+        raise ValueError('The inequality has no solutions.')
+    elif inequality.left_side() == 0:
+        if inequality.inequality_type == '>':
+            return f'{inequality.variables.pop()} > {inequality.right_side()/inequality.left_side():.2f}'
+        elif inequality.inequality_type == '<':
+            return f'{inequality.variables.pop()} < {inequality.right_side()/inequality.left_side():.2f}'
+
+    # Return the solution
+    if inequality.inequality_type == '>':
+        return f'{inequality.variables.pop()} > {inequality.right_side()/inequality.left_side():.2f}'
+    elif inequality.inequality_type == '<':
+        return f'{inequality.variables.pop()} < {inequality.right_side()/inequality.left_side():.2f}'
+
+def system_of_first_order_equations(system_string, method='addition'):
+    # Divide the system string into individual equation strings
+    equation_strings = system_string.split(';')
+
+    # Create a list of Equation objects
+    equations = [Equation(equation_string) for equation_string in equation_strings]
+
+    # Check if the system is first-order
+    if any(max([term[2] for term in equation.terms]) != 1 for equation in equations):
+        raise ValueError('The system is not first-order.')
+
+    # Check if the system has a solution
+    if all(equation.left_side() == equation.right_side() for equation in equations):
+        raise ValueError('The system has infinite solutions.')
+    elif any(equation.left_side() == 0 for equation in equations):
+        raise ValueError('The system has no solutions.')
+
+    # Solve the system using the addition method
+    if method == 'addition':
+        # Check if the variables of the equations are the same
+        variables = [equation.variables.pop() for equation in equations]
+        if any(variable != variables[0] for variable in variables):
+            raise ValueError('The variables of the equations are not the same.')
+
+        # Find the sum of the coefficients of the variable in the equations
+        variable_coefficients = [equation.left_side().coefficients[variable] for equation in equations]
+        variable_coefficient_sum = sum(variable_coefficients)
+
+        # Find the sum of the constants in the equations
+        constants = [equation.right_side().constant for equation in equations]
+        constant_sum = sum(constants)
+
+        # Check if the system has a solution
+        if variable_coefficient_sum == 0:
+            if constant_sum == 0:
+                raise ValueError('The system has infinite solutions.')
+            else:
+                raise ValueError('The system has no solutions.')
+
+        # Return the solution
+        return f'{variables[0]} = {constant_sum/variable_coefficient_sum:.2f}'
+
+    # Solve the system using the substitution method
+    elif method == 'substitution':
+        # Check if the variables of the equations are different
+        variables = [equation.variables.pop() for equation in equations]
+        if not all(variable != variables[0] for variable in variables):
+            raise ValueError('The variables of the equations are not different.')
+
+        # Solve the first equation for the first variable
+        solution = solve_first_order_equation(equations[0].expression_string)
+        variable_value = float(solution.split(' = ')[1])
+
+        # Substitute the value of the first variable into the second equation
+        second_equation = equations[1].expression_string.replace(variables[0], str(variable_value))
+
+        # Solve the second equation
+        return solve_first_order_equation(second_equation)
+    else:
+        raise ValueError('Invalid method.')
 
